@@ -1,3 +1,6 @@
+app端：网络请求Retrofit+数据库Realm+前端风格是material Design
+后端：srpingMVC+mybatis+redis
+
 MaterialEditText说明
 https://my.oschina.net/rengwuxian/blog/340638
 http://blog.csdn.net/u013252213/article/details/48713727

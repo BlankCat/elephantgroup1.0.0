@@ -64,4 +64,12 @@
         android:layout_below="@id/login_input_linear"
         android:text="@string/register_btn"/>
 
+    <com.elephantgroup.blog.custom.RippleTextView
+        android:id="@+id/userAgreement"
+        style="@style/TextViewStyle"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/registerBtn"
+        android:layout_marginLeft="15dp"
+        android:text="@string/user_agreement"/>
+
 </RelativeLayout>

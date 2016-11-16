@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.elephantgroup.blog.R;
+import com.elephantgroup.blog.ui.webwiew.WebViewUI;
 
 import org.json.JSONObject;
 
@@ -50,6 +51,8 @@ public class Utils {
             }
         }
     }
+
+
 
     /**
      * 判断是否连通网络
@@ -89,8 +92,21 @@ public class Utils {
         }
     }
 
-
-
+    /**
+     * 进入WebView界面
+     * @param context 上下文对象
+     * @param url webView url
+     * @param title webView标题
+     * @param isHidden 是否隐藏分享按钮
+     * */
+    public static void intentWebView(Context context,String url,String title,boolean isHidden){
+        Intent intent = new Intent(context, WebViewUI.class);
+        intent.putExtra("loadUrl", url);
+        intent.putExtra("title", title);
+        intent.putExtra("isHiddenRightBtn", isHidden);
+        context.startActivity(intent);
+        Utils.openNewActivityAnim((Activity) context, false);
+    }
 
 
     public static int getVersionCode(Context mContext) {
@@ -539,23 +555,7 @@ public class Utils {
         }
     }
 
-
-    /**
-     * c查找对应包名是否安装
-     */
-    public static boolean checkPackage(Context context, String packageName) {
-        if (packageName == null || "".equals(packageName))
-            return false;
-        try {
-            context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_UNINSTALLED_PACKAGES);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-
-    /**
+     /**
      * 防止连击
      */
     private static long lastClickTime;

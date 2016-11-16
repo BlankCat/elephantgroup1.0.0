@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ElephantGroup</string>
+    <string name="app_name">小象博客</string>
     <string name="error_message">请求超时，请稍后再试</string>
 
     <string name="main_home">首页</string>
@@ -20,4 +20,5 @@
     <string name="login_register">新用户注册</string>
     <string name="login_warning">账号或密码为空！</string>
     <string name="register_btn"> 　注   册　 </string>
+    <string name="user_agreement">用户协议</string>
 </resources>

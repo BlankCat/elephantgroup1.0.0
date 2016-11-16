@@ -80,6 +80,18 @@
         ripple:rv_centered="true"
         android:visibility="gone" />
 
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="16dip"
+        android:layout_height="16dip"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="-65dip"
+        android:layout_toRightOf="@+id/app_title"
+        android:indeterminate="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/common_loading"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/more"
         android:layout_width="56dp"
