@@ -104,6 +104,8 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
                         if ("200".equals(jsonMap.get("code"))) {
                             String message = jsonMap.get("message").toString();
                             LogUtil.e("------------>"+message);
+                            LogUtil.e("登录成功消息"+message);
+
                         }
 
                     }
