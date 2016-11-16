@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ripple="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:clipToPadding ="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/app_title_layout"
+        layout="@layout/app_title" />
+
+    <LinearLayout
+        android:id="@+id/login_input_linear"
+        style="@style/login_input_linear"
+        android:layout_below="@+id/app_title_layout"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            style="@style/login_input_linear_child"
+            android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/register_account_et"
+                style="@style/input_edittext"
+                android:inputType="phone"
+                android:hint="@string/login_account_hint"
+                app:met_floatingLabel="highlight"
+                android:maxLength="11"
+                app:met_maxCharacters="11"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp" />
+
+        <LinearLayout
+            style="@style/login_input_linear_child"
+            android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/register_pwd_et"
+                style="@style/input_edittext"
+                android:inputType="textPassword"
+                android:hint="@string/login_pwd_hint"
+                android:maxLength="16"
+                app:met_maxCharacters="16" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp" />
+    </LinearLayout>
+    <com.elephantgroup.blog.custom.RippleTextView
+        android:id="@+id/registerBtn"
+        style="@style/loginBtnStyle"
+        android:layout_below="@id/login_input_linear"
+        android:text="@string/register_btn"/>
+
+</RelativeLayout>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ElephantGroup</string>
+    <string name="error_message">请求超时，请稍后再试</string>
+
+    <string name="main_home">首页</string>
+    <string name="main_good">干货</string>
+    <string name="myself">我的</string>
+
+    <!-- 登陆注册-->
+    <string name="check_password_error_empty">密码不能为空</string>
+    <string name="check_password_error_length">密码长度必需在6-16位之间</string>
+    <string name="check_phone_empty">手机号不能为空</string>
+    <string name="check_phone_format_error">手机号格式不正确</string>
+    <string name="login_phone_number">手机号</string>
+    <string name="login_account_hint">请输入手机号码</string>
+    <string name="login_pwd_hint">请输入密码</string>
+    <string name="login_btn"> 　登   录　 </string>
+    <string name="login_forgot">忘记密码</string>
+    <string name="login_register">新用户注册</string>
+    <string name="login_warning">账号或密码为空！</string>
+    <string name="register_btn"> 　注   册　 </string>
+</resources>

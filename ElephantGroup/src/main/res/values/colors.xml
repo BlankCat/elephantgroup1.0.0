@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主题色 -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- 不可点击颜色 灰色 -->
+    <color name="colorDisable">#ffdbdbdb</color>
+    <color name="colorGrayBg">#fff6f6f6</color>
+    <color name="colorSubTitlle">#ff999999</color>
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <!-- 透明 -->
+    <color name="transparent">#00000000</color>
+</resources>

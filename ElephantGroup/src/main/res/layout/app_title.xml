@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.elephantgroup.blog.custom.RippleView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_title_rela"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/colorPrimary">
+
+    <View
+        android:id="@+id/app_title_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/app_back"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/title_btn_bg"
+        android:scaleType="center"
+        ripple:rv_centered="true"
+        android:src="@drawable/icon_back" />
+
+
+
+    <com.elephantgroup.blog.custom.AlwaysMarqueeTextView
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:singleLine="true"
+        ripple:rv_centered="true"
+        android:textColor="@color/white"
+        android:textSize="19sp" />
+
+
+    <ImageView
+        android:id="@+id/app_btn_right"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/title_btn_bg"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/app_title_right_selector"
+        android:textSize="15sp"
+        ripple:rv_centered="true"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/app_tab_right"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/title_btn_bg"
+        android:scaleType="center"
+        android:visibility="gone"
+        ripple:rv_centered="true"/>
+
+
+    <ImageView
+        android:id="@+id/detail_set"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/title_btn_bg"
+        android:scaleType="center"
+        ripple:rv_centered="true"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/more"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/title_btn_bg"
+        android:scaleType="center"
+        android:visibility="gone"
+        ripple:rv_centered="true"/>
+
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="40dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/title_btn_bg"
+        android:scaleType="center"
+        android:visibility="gone"
+        ripple:rv_centered="true"/>
+</com.elephantgroup.blog.custom.RippleView>

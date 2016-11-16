@@ -1,0 +1,32 @@
+Retrofit
+http://blog.csdn.net/duanyy1990/article/details/52139294
+http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0518/4270.html
+
+compile 'com.squareup.retrofit2:retrofit:2.1.0'
+compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
+Retrofit注解详解
+
+第一类：HTTP请求方法
+GET POST PULL DELETE PATCH HEAD OPTIONS 分别对应HTTP的请求方法，都接收一个字符串标示接口path与BASEURL组成完整的url,不过也可以不指定，
+结合小面的@url注解使用url也可以使用变量如{id},并使用@Path("id")注解为{id}提供值
+HTTP 可用于替换上面7个方法 或用于扩展
+
+第二类：标记类
+表单请求：
+FromUrlEncoded 标示请求体是一个from表单
+Multipart 标示请求体是一个支持文件上传的From表单
+标记：Streaming 标示响应的数据用流返回，如果没有使用该注解，默认会把数据全部载入内存，之后通过流获取数据就是读取内存中的数据，所有如果返回数据较大 就用该注解
+
+第三类：参数类
+作用于方法：Headers 用于添加请求头
+作用于方法参数（形参）：
+Header:用于添加不固定值得Header
+Body:用于非表单请求体
+Field:用于表单字段 Field和FieldMap与FromUrlEncoded配合
+FiledMap:接收类型是Map<String,Stiring>
+Part:非String类型会调用其toString方法 Part和PartMap与Multipart配合适合有文件上传的情况
+PartMap:PartMap的默认接收类型是Map<String,RequestBody>,非RequestBody类型会通过Converter转换
+Path、Query、QueryMap、Url 用于URL时Query和QueryMap与Field和FiledMap的功能一样不同的是Query和QueryMap中的数据体现在url上
+而Field和FiledMap的数据时请求体，但生成的数据形式是一样的
