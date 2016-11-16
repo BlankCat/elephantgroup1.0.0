@@ -5,6 +5,7 @@
     <string name="main_home">首页</string>
     <string name="main_good">干货</string>
     <string name="myself">我的</string>
+    <string name="it_elephant">IT小象</string>
 
     <!-- 登陆注册-->
     <string name="check_password_error_empty">密码不能为空</string>

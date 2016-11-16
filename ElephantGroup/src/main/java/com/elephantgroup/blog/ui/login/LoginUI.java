@@ -1,11 +1,8 @@
 package com.elephantgroup.blog.ui.login;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,25 +12,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.elephantgroup.blog.R;
 import com.elephantgroup.blog.listener.NetRequestListener;
 import com.elephantgroup.blog.netutils.NetRequestImpl;
-import com.elephantgroup.blog.netutils.UrlConstansApi;
 import com.elephantgroup.blog.ui.base.BaseFragmentActivity;
-import com.elephantgroup.blog.util.LogUtil;
-import com.elephantgroup.blog.util.OkHttpUtil;
+import com.elephantgroup.blog.ui.home.MainHomePageUI;
+import com.elephantgroup.blog.util.MySharedPrefs;
 import com.elephantgroup.blog.util.Utils;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.TreeMap;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 /**
  * 登陆界面
@@ -49,11 +37,6 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
     TextView loginBtn;
     @Bind(R.id.app_back)
     ImageView appBack;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
 
     @Override
@@ -66,8 +49,6 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
         appBack.setVisibility(View.GONE);
         setTitle(getString(R.string.login_btn));
     }
-
-    private static TreeMap<String, String> paramsMap = new TreeMap<String, String>();
 
     /**
      * 登陆页面监听
@@ -84,44 +65,12 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
                 Utils.openNewActivityAnim(LoginUI.this, false);
                 break;
             case R.id.loginBtn://登陆
-                String path = UrlConstansApi.BASE_URL + UrlConstansApi.LOGIN_URL;
-                paramsMap.clear();
-                paramsMap.put("phonenumber", loginAccountEt.getText().toString());
-                paramsMap.put("password", loginPwdEt.getText().toString());
-
-                OkHttpUtil.asynHttpPost(path, paramsMap, new Callback() {
-                    @Override
-                    public void onFailure(Request request, IOException e) {
-                        LogUtil.e("------------>"+e);
-                    }
-
-                    @Override
-                    public void onResponse(Response response) throws IOException {
-                        int code = response.code();
-                        String result = response.body().string();
-                        Map<String, Object> jsonMap = JSONObject.parseObject(result);
-                        LogUtil.e("------------>"+jsonMap.toString());
-                        if ("200".equals(jsonMap.get("code"))) {
-                            String message = jsonMap.get("message").toString();
-                            LogUtil.e("------------>"+message);
-                            LogUtil.e("登录成功消息"+message);
-                            LogUtil.e("登录成功消息copy"+message);
-
-                        }
-
-                    }
-                });
-
+                if (!TextUtils.isEmpty(loginAccountEt.getText().toString()) && !TextUtils.isEmpty(loginPwdEt.getText().toString())){
+                    NetRequestImpl.login(loginAccountEt.getText().toString(), loginPwdEt.getText().toString(), this);
+                }else{
+                    showToast(getString(R.string.login_warning));
+                }
                 break;
-
-//                if (!TextUtils.isEmpty(loginAccountEt.getText().toString()) && !TextUtils.isEmpty(loginPwdEt.getText().toString())){
-//                    NetRequestImpl.login(loginAccountEt.getText().toString(), loginPwdEt.getText().toString(), this);
-////                    startActivity(new Intent(LoginUI.this, MainHomePageUI.class));
-////                    Utils.openNewActivityAnim(LoginUI.this, true);
-//                }else{
-//                    showToast(getString(R.string.login_warning));
-//                }
-//                break;
         }
     }
 
@@ -146,10 +95,14 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
     }
 
     @Override
-    public void onResponse(Object response) {
-        Log.e("zjf----1--->", response.toString());
+    public void onResponse(JSONObject response) {
+        showToast(response.toString());
 
-        Log.e("zjf----1--->", response.toString());
+        //是个人信息
+        MySharedPrefs.write(this, MySharedPrefs.FILE_USER, MySharedPrefs.KEY_LOGIN_USERINFO, response.toString());
+
+        startActivity(new Intent(LoginUI.this, MainHomePageUI.class));
+        Utils.openNewActivityAnim(LoginUI.this, true);
     }
 
     @Override
@@ -157,52 +110,4 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
         showToast("失败");
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "LoginUI Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.elephantgroup.blog.ui.login/http/host/path")
-        );
-//        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "LoginUI Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.elephantgroup.blog.ui.login/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
 }

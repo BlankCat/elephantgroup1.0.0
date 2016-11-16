@@ -1,10 +1,8 @@
 package com.elephantgroup.blog.netutils;
 
-import com.elephantgroup.blog.vo.UserInfo;
-
-import java.util.List;
 
 import okhttp3.ResponseBody;
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -28,7 +26,7 @@ public interface DataService {
      * */
     @FormUrlEncoded
     @POST(UrlConstansApi.LOGIN_URL)
-    Observable<UserInfo> login(@Field("phonenumber") String userPhone, @Field("password") String userPwd);
+    Observable<ResponseBody> login(@Field("phonenumber") String userPhone, @Field("password") String userPwd);
 
     /**
      * 注册
@@ -38,14 +36,14 @@ public interface DataService {
      * */
     @FormUrlEncoded
     @POST(UrlConstansApi.REGISTER_URL)
-    Observable<UserInfo> register(@Field("phonenumber") String userPhone, @Field("password") String userPwd);
+    Observable<ResponseBody> register(@Field("phonenumber") String userPhone, @Field("password") String userPwd);
 
     /**
      * 获取所有用户
      * getAllUser 动态url
      * */
     @POST(UrlConstansApi.GETALLUSER_URL)
-    Observable<List<UserInfo>> getAllUser();
+    Observable<ResponseBody> getAllUser();
 
     /**
      * 获取文章列表

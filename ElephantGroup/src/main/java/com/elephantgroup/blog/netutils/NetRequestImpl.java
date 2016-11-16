@@ -2,11 +2,8 @@ package com.elephantgroup.blog.netutils;
 
 import android.util.Log;
 
+import com.alibaba.fastjson.JSONObject;
 import com.elephantgroup.blog.listener.NetRequestListener;
-import com.elephantgroup.blog.vo.UserInfo;
-
-import java.util.List;
-import java.util.logging.Logger;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -21,6 +18,22 @@ import rx.schedulers.Schedulers;
 public class NetRequestImpl {
 
     /**
+     * 请求数据成功回调
+     * @param requestListener 回调监听
+     * @param responseBody 回调数据
+     * */
+    public static void netRequestResponse(NetRequestListener requestListener,ResponseBody responseBody){
+        if (requestListener != null){
+            try {
+                JSONObject jsonObject = JSONObject.parseObject(responseBody.string());
+                requestListener.onResponse(jsonObject);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
      * 登录
      * @param userPhone 用户名
      * @param userPwd 密码
@@ -30,10 +43,10 @@ public class NetRequestImpl {
         if (requestListener != null){
             requestListener.start();
         }
-        Observable<UserInfo> observable =  BaseModelImpl.getInstance().login(userPhone,userPwd);
+        Observable<ResponseBody> observable =  BaseModelImpl.getInstance().login(userPhone,userPwd);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
+                .subscribe(new Subscriber<ResponseBody>() {
                     @Override
                     public void onCompleted() {
 
@@ -45,12 +58,8 @@ public class NetRequestImpl {
                     }
 
                     @Override
-                    public void onNext(Object userInfo) {
-                      Log.e("zjf---->",userInfo.toString());
-                        if (requestListener != null){
-                            Log.e("zjf---->",userInfo.toString());
-                            requestListener.onResponse(userInfo);
-                        }
+                    public void onNext(ResponseBody responseBody) {
+                        netRequestResponse(requestListener,responseBody);
                     }
                 });
     }
@@ -66,10 +75,10 @@ public class NetRequestImpl {
         if (requestListener != null){
             requestListener.start();
         }
-        Observable<UserInfo> observable =  BaseModelImpl.getInstance().register(userPhone,userPwd);
+        Observable<ResponseBody> observable =  BaseModelImpl.getInstance().register(userPhone,userPwd);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
+                .subscribe(new Subscriber<ResponseBody>() {
                     @Override
                     public void onCompleted() {
 
@@ -81,10 +90,8 @@ public class NetRequestImpl {
                     }
 
                     @Override
-                    public void onNext(Object userInfo) {
-                        if (requestListener != null){
-                            requestListener.onResponse(userInfo);
-                        }
+                    public void onNext(ResponseBody responseBody) {
+                        netRequestResponse(requestListener,responseBody);
                     }
                 });
 
@@ -98,10 +105,10 @@ public class NetRequestImpl {
         if (requestListener != null){
             requestListener.start();
         }
-        Observable<List<UserInfo>> observable = BaseModelImpl.getInstance().getAllUser();
+        Observable<ResponseBody> observable = BaseModelImpl.getInstance().getAllUser();
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
+                .subscribe(new Subscriber<ResponseBody>() {
             @Override
             public void onCompleted() {
 
@@ -113,10 +120,8 @@ public class NetRequestImpl {
             }
 
             @Override
-            public void onNext(Object userList) {
-                if (requestListener != null){
-                    requestListener.onResponse(userList);
-                }
+            public void onNext(ResponseBody responseBody) {
+                netRequestResponse(requestListener,responseBody);
             }
         });
     }
@@ -132,7 +137,7 @@ public class NetRequestImpl {
         Observable<ResponseBody> observable = BaseModelImpl.getInstance().getAllArticel();
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
+                .subscribe(new Subscriber<ResponseBody>() {
             @Override
             public void onCompleted() {
 
@@ -144,10 +149,8 @@ public class NetRequestImpl {
             }
 
             @Override
-            public void onNext(Object userList) {
-                if (requestListener != null){
-                    requestListener.onResponse(userList);
-                }
+            public void onNext(ResponseBody responseBody) {
+                netRequestResponse(requestListener,responseBody);
             }
         });
     }

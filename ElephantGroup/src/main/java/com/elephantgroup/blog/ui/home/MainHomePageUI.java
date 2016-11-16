@@ -20,7 +20,6 @@ import butterknife.OnClick;
  */
 public class MainHomePageUI extends BaseFragmentActivity {
 
-
     @Bind(R.id.main_home)
     TextView mainHome;
     @Bind(R.id.main_goods)
@@ -55,9 +54,9 @@ public class MainHomePageUI extends BaseFragmentActivity {
     @Override
     protected void initData() {
         mainHome.setSelected(true);
-        showFragment(MainHomeFragment.class);
         showFragment(MainGoodsFragment.class);
         showFragment(MySelfFragment.class);
+        showFragment(MainHomeFragment.class);
     }
 
     /**
@@ -100,7 +99,6 @@ public class MainHomePageUI extends BaseFragmentActivity {
             case R.id.main_goods:
                 mainGoods.setSelected(true);
                 break;
-
             case R.id.main_myself:
                 mainMyself.setSelected(true);
                 break;

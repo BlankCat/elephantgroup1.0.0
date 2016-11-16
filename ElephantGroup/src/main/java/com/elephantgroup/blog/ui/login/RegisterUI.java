@@ -2,14 +2,13 @@ package com.elephantgroup.blog.ui.login;
 
 import android.text.Editable;
 import android.text.TextUtils;
-import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.elephantgroup.blog.R;
 import com.elephantgroup.blog.custom.RippleTextView;
 import com.elephantgroup.blog.listener.NetRequestListener;
 import com.elephantgroup.blog.netutils.NetRequestImpl;
 import com.elephantgroup.blog.ui.base.BaseFragmentActivity;
-import com.elephantgroup.blog.vo.UserInfo;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.regex.Matcher;
@@ -18,7 +17,7 @@ import java.util.regex.Pattern;
 import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
-import retrofit2.Call;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 
 /**
@@ -110,10 +109,9 @@ public class RegisterUI extends BaseFragmentActivity implements NetRequestListen
     }
 
     @Override
-    public void onResponse(Object response) {
+    public void onResponse(JSONObject response) {
 
     }
-
 
     @Override
     public void error(int errorCode, String errorMsg) {

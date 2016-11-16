@@ -33,7 +33,9 @@ public class MainGoodsFragment extends BaseFragment {
         return view;
     }
 
-    private void initData(){
+    private void initData() {
 
     }
+
+
 }
