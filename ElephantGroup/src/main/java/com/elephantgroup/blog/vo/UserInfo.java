@@ -1,10 +1,16 @@
 package com.elephantgroup.blog.vo;
 
+import io.realm.Realm;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created on 2016/11/10.
  */
-public class UserInfo {
+public class UserInfo extends RealmObject{
 
+    //@PrimaryKey注解 主键
+    @PrimaryKey
     private String _id;
     private String phonenumber;
     private String username;

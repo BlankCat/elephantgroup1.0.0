@@ -1,1 +1,12 @@
+https://realm.io/docs/java/latest/#getting-started 官方文档
+https://realm.io/cn/news/jp-simard-realm-core-database-engine/
+http://www.cocoachina.com/ios/20160513/16241.html
+http://www.07net01.com/2015/11/986920.html
+
+classpath "io.realm:realm-gradle-plugin:2.2.0"
+apply plugin: 'realm-android'
+
 realm是一个跨平台移动数据库引擎，支持iOS、OS X（Objective-C和Swift）以及Android。
+Realm 最核心的理念就是对象驱动，这是 Realm 的核心原则 本质上是一个嵌入式数据库
+
+优点：MVCC多版本并发控制 本地链接  String & Int 优化  崩溃保护  零拷贝  真实的懒加载  内部加密  支持多进程访问  空值  妥协
