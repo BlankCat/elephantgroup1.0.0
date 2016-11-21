@@ -21,4 +21,9 @@
     <string name="login_warning">账号或密码为空！</string>
     <string name="register_btn"> 　注   册　 </string>
     <string name="user_agreement">用户协议</string>
+
+    <!-- 我的 -->
+    <string name="my_mark">我的收藏</string>
+    <string name="label_manger">标签管理</string>
+    <string name="setting">设置</string>
 </resources>

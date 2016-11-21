@@ -2,11 +2,90 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorSubTitlle">
 
     <include layout="@layout/app_title"/>
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="10dp">
 
-    <com.elephantgroup.blog.custom.RippleTextView
-        style="@style/TextViewStyle"
-        android:text="@string/myself"/>
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/default_circle_avatar" />
+
+
+        <TextView
+            android:id="@+id/nickTv"
+            style="@style/my_setting_heard"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/avatar"/>
+
+        <TextView
+            android:id="@+id/singTv"
+            style="@style/my_setting_heard"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/nickTv"
+            android:layout_toRightOf="@+id/avatar"/>
+
+        <ImageView style="@style/right_image_style" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <com.elephantgroup.blog.custom.RippleView
+            android:id="@+id/myMark"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white">
+
+            <TextView
+                style="@style/text_style"
+                android:text="@string/my_mark"/>
+
+            <ImageView style="@style/right_image_style" />
+        </com.elephantgroup.blog.custom.RippleView>
+
+        <View style="@style/line_style" />
+
+        <com.elephantgroup.blog.custom.RippleView
+            android:id="@+id/labelManger"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white">
+
+            <TextView
+                style="@style/text_style"
+                android:text="@string/label_manger"/>
+
+            <ImageView style="@style/right_image_style" />
+        </com.elephantgroup.blog.custom.RippleView>
+        </LinearLayout>
+
+    <com.elephantgroup.blog.custom.RippleView
+        android:id="@+id/setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/text_style"
+            android:text="@string/setting"/>
+
+        <ImageView style="@style/right_image_style" />
+    </com.elephantgroup.blog.custom.RippleView>
 </LinearLayout>
