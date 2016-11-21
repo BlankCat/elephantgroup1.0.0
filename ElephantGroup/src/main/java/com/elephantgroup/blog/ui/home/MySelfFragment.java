@@ -62,7 +62,7 @@ public class MySelfFragment extends BaseFragment {
     }
 
     @OnClick({R.id.myMark,R.id.labelManger,R.id.setting})
-    private void clickMethod(View view){
+    public void clickMethod(View view){
         switch (view.getId()){
             case R.id.myMark://我的收藏
 
