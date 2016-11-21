@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrayBg">
+
+    <include layout="@layout/app_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <com.elephantgroup.blog.custom.RippleView
+            android:id="@+id/updatePwd"
+            style="@style/setting_text_style">
+
+            <TextView
+                style="@style/text_style"
+                android:text="@string/update_pwd"/>
+
+            <ImageView style="@style/right_image_style" />
+        </com.elephantgroup.blog.custom.RippleView>
+
+        <View style="@style/line_style" />
+
+        <com.elephantgroup.blog.custom.RippleView
+            android:id="@+id/clearCarch"
+            style="@style/setting_text_style">
+
+            <TextView
+                style="@style/text_style"
+                android:text="@string/clear_carch"/>
+
+            <ImageView style="@style/right_image_style" />
+        </com.elephantgroup.blog.custom.RippleView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <com.elephantgroup.blog.custom.RippleView
+            android:id="@+id/userBack"
+            style="@style/setting_text_style">
+
+            <TextView
+                style="@style/text_style"
+                android:text="@string/user_back"/>
+
+            <ImageView style="@style/right_image_style" />
+        </com.elephantgroup.blog.custom.RippleView>
+
+        <View style="@style/line_style" />
+
+        <com.elephantgroup.blog.custom.RippleView
+            android:id="@+id/userAgreement"
+            style="@style/setting_text_style">
+
+            <TextView
+                style="@style/text_style"
+                android:text="@string/user_agreement"/>
+
+            <ImageView style="@style/right_image_style" />
+        </com.elephantgroup.blog.custom.RippleView>
+        <View style="@style/line_style" />
+
+        <com.elephantgroup.blog.custom.RippleView
+            android:id="@+id/aboutUs"
+            style="@style/setting_text_style">
+
+            <TextView
+                style="@style/text_style"
+                android:text="@string/about_us"/>
+
+            <ImageView style="@style/right_image_style" />
+        </com.elephantgroup.blog.custom.RippleView>
+    </LinearLayout>
+
+    <com.elephantgroup.blog.custom.RippleTextView
+        android:id="@+id/exitApp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:background="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:text="@string/exit_app"
+        app:rv_color="@color/colorPrimary"
+        app:rv_centered="true"/>
+
+</LinearLayout>

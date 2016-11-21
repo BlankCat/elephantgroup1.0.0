@@ -22,8 +22,15 @@
     <string name="register_btn"> 　注   册　 </string>
     <string name="user_agreement">用户协议</string>
 
-    <!-- 我的 -->
+    <!-- 我的 设置-->
     <string name="my_mark">我的收藏</string>
     <string name="label_manger">标签管理</string>
     <string name="setting">设置</string>
+    <string name="update_pwd">修改账户密码</string>
+    <string name="clear_carch">清理缓存</string>
+    <string name="user_back">用户反馈</string>
+    <string name="about_us">关于我们</string>
+    <string name="exit_app">退出当前账户</string>
+
+
 </resources>

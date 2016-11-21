@@ -1,10 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:clipToPadding ="true">
+    android:clipToPadding="true">
     <FrameLayout
         android:id="@+id/main_frame"
         android:layout_width="match_parent"
@@ -24,21 +25,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorGrayBg"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            app:rv_color = "@color/colorPrimary"
+            app:rv_type ="rectangle">
 
-            <TextView
+            <com.elephantgroup.blog.custom.RippleTextView
                 android:id="@+id/main_home"
                 style="@style/main_tab_tv_style"
                 android:drawableTop="@drawable/main_home_icon"
                 android:text="@string/main_home" />
 
-            <TextView
+            <com.elephantgroup.blog.custom.RippleTextView
                 android:id="@+id/main_goods"
                 style="@style/main_tab_tv_style"
                 android:drawableTop="@drawable/main_goods_icon"
                 android:text="@string/main_good" />
 
-            <TextView
+            <com.elephantgroup.blog.custom.RippleTextView
                 android:id="@+id/main_myself"
                 style="@style/main_tab_tv_style"
                 android:drawableTop="@drawable/myself_icon"

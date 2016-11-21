@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorSubTitlle">
+    android:background="@color/colorGrayBg">
 
     <include layout="@layout/app_title"/>
     <RelativeLayout
@@ -48,9 +49,7 @@
         android:orientation="vertical">
         <com.elephantgroup.blog.custom.RippleView
             android:id="@+id/myMark"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white">
+            style="@style/setting_text_style">
 
             <TextView
                 style="@style/text_style"
@@ -63,9 +62,7 @@
 
         <com.elephantgroup.blog.custom.RippleView
             android:id="@+id/labelManger"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white">
+            style="@style/setting_text_style">
 
             <TextView
                 style="@style/text_style"
@@ -77,10 +74,8 @@
 
     <com.elephantgroup.blog.custom.RippleView
         android:id="@+id/setting"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:background="@color/white">
+        style="@style/setting_text_style">
 
         <TextView
             style="@style/text_style"

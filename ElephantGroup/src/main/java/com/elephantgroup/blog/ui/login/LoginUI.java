@@ -67,6 +67,10 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
             case R.id.loginBtn://登陆
                 if (!TextUtils.isEmpty(loginAccountEt.getText().toString()) && !TextUtils.isEmpty(loginPwdEt.getText().toString())){
                     NetRequestImpl.login(loginAccountEt.getText().toString(), loginPwdEt.getText().toString(), this);
+                    //测试用
+                    startActivity(new Intent(LoginUI.this, MainHomePageUI.class));
+                    Utils.openNewActivityAnim(LoginUI.this, true);
+
                 }else{
                     showToast(getString(R.string.login_warning));
                 }

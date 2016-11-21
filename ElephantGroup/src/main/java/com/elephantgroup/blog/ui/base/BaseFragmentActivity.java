@@ -2,6 +2,7 @@ package com.elephantgroup.blog.ui.base;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -13,8 +14,13 @@ import android.widget.ImageView;
 import com.elephantgroup.blog.R;
 import com.elephantgroup.blog.custom.AlwaysMarqueeTextView;
 import com.elephantgroup.blog.custom.MyToast;
+import com.elephantgroup.blog.ui.login.LoginUI;
+import com.elephantgroup.blog.util.MySharedPrefs;
 import com.elephantgroup.blog.util.Utils;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -25,6 +31,7 @@ import butterknife.ButterKnife;
 public abstract class BaseFragmentActivity extends FragmentActivity implements View.OnClickListener {
     protected ImageView mBack;
     protected AlwaysMarqueeTextView mTitle;
+    public static List<Activity> activitys = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +39,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             initSystemBar(BaseFragmentActivity.this,R.color.colorPrimary);
         }
+        activitys.add(this);
         setContentView();
         ButterKnife.bind(this);
         initPublicView();
@@ -51,6 +59,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
 
     @Override
     protected void onDestroy() {
+        activitys.remove(this);
         super.onDestroy();
         ButterKnife.unbind(this);
     }
@@ -125,5 +134,37 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
+    }
+
+
+    /**
+     * 退出应用
+     */
+    public void exitApp() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    MySharedPrefs.clearUserInfo(BaseFragmentActivity.this);
+                    exit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(BaseFragmentActivity.this, LoginUI.class));
+                Utils.openNewActivityAnim(BaseFragmentActivity.this, true);
+            }
+        }).start();
+    }
+
+    public static void exit() {
+        if (activitys != null && !activitys.isEmpty()) {
+            for (Activity act : activitys) {
+                if (!act.isFinishing()) {
+                    act.finish();
+                }
+            }
+            activitys.clear();
+        }
     }
 }

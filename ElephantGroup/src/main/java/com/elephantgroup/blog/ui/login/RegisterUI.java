@@ -130,10 +130,4 @@ public class RegisterUI extends BaseFragmentActivity implements NetRequestListen
         showToast("失败");
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }
