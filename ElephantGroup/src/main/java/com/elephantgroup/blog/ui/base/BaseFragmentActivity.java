@@ -1,8 +1,10 @@
 package com.elephantgroup.blog.ui.base;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -15,12 +17,15 @@ import com.elephantgroup.blog.R;
 import com.elephantgroup.blog.custom.AlwaysMarqueeTextView;
 import com.elephantgroup.blog.custom.MyToast;
 import com.elephantgroup.blog.ui.login.LoginUI;
+import com.elephantgroup.blog.util.Constans;
 import com.elephantgroup.blog.util.MySharedPrefs;
 import com.elephantgroup.blog.util.Utils;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 
@@ -40,10 +45,50 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
             initSystemBar(BaseFragmentActivity.this,R.color.colorPrimary);
         }
         activitys.add(this);
+        checkPermission();
         setContentView();
         ButterKnife.bind(this);
         initPublicView();
         initData();
+    }
+
+    void checkPermission() {
+        final List<String> permissionsList = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if ((checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if ((checkSelfPermission(Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS);
+            if ((checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.READ_PHONE_STATE);
+            if (permissionsList.size() != 0) {
+                requestPermissions(permissionsList.toArray(new String[permissionsList.size()]), Constans.REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode){
+            case Constans.REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS:
+            {
+                Map<String, Integer> perms = new HashMap<>();
+                perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.READ_PHONE_STATE, PackageManager.PERMISSION_GRANTED);
+                for (int i = 0; i < permissions.length; i++){
+                    perms.put(permissions[i], grantResults[i]);
+                }
+                if (perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                    checkPermission();
+                }
+            }
+            return;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     @Override

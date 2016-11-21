@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.MemoryInfo;
 import android.content.Context;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.text.format.Formatter;
 
 import java.io.BufferedOutputStream;
@@ -11,9 +12,11 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 
 /**
  * SD卡辅助类
@@ -398,5 +401,47 @@ public class SDFileUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * <Save the App crash info to sdcard>
+     */
+    public static String saveCrashInfoToFile(String excepMsg) {
+        if (TextUtils.isEmpty(excepMsg)) {
+            return "";
+        }
+        String errorlog = SDCardCtrl.getErrorLogPath();
+        FileWriter fw = null;
+        PrintWriter pw = null;
+        File logFile = null;
+        try {
+            StringBuilder logSb = new StringBuilder();
+            logSb.append("crashlog");
+            logSb.append("(");
+            logSb.append(Utils.getSimpDate());
+            logSb.append(")");
+            logSb.append(".txt");
+            logFile = new File(errorlog, logSb.toString());
+            if (!logFile.exists()) {
+                logFile.createNewFile();
+            }
+            fw = new FileWriter(logFile, true);
+            pw = new PrintWriter(fw);
+            pw.write(excepMsg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (pw != null) {
+                pw.flush();
+                pw.close();
+            }
+            if (fw != null) {
+                try {
+                    fw.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return logFile == null ? "" : logFile.getAbsolutePath();
     }
 }

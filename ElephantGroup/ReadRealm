@@ -6,6 +6,17 @@ http://www.07net01.com/2015/11/986920.html
 classpath "io.realm:realm-gradle-plugin:2.2.0"
 apply plugin: 'realm-android'
 
+
+使用Realm会使包体积增大4M左右 。。。。。。。。（支持多架构  下面是只支持一个通用的 减小包体积）
+splits {
+    abi {
+        enable true
+        reset()
+        include 'armeabi-v7a'
+        universalApk true//是否要打包一个通用的apk
+    }
+}
+
 realm是一个跨平台移动数据库引擎，支持iOS、OS X（Objective-C和Swift）以及Android。
 Realm 最核心的理念就是对象驱动，这是 Realm 的核心原则 本质上是一个嵌入式数据库
 
