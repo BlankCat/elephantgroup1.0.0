@@ -1,6 +1,7 @@
 package com.elephantgroup.blog.ui.login;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.elephantgroup.blog.R;
+import com.elephantgroup.blog.custom.RippleTextView;
 import com.elephantgroup.blog.listener.NetRequestListener;
 import com.elephantgroup.blog.netutils.NetRequestImpl;
 import com.elephantgroup.blog.ui.base.BaseFragmentActivity;
@@ -34,7 +36,7 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
     @Bind(R.id.login_pwd_et)
     EditText loginPwdEt;
     @Bind(R.id.loginBtn)
-    TextView loginBtn;
+    RippleTextView loginBtn;
     @Bind(R.id.app_back)
     ImageView appBack;
 
@@ -66,7 +68,7 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
                 break;
             case R.id.loginBtn://登陆
                 if (!TextUtils.isEmpty(loginAccountEt.getText().toString()) && !TextUtils.isEmpty(loginPwdEt.getText().toString())){
-                    NetRequestImpl.login(loginAccountEt.getText().toString(), loginPwdEt.getText().toString(), this);
+                    NetRequestImpl.login(loginAccountEt.getText().toString(), loginPwdEt.getText().toString(), LoginUI.this);
                     //测试用
                     startActivity(new Intent(LoginUI.this, MainHomePageUI.class));
                     Utils.openNewActivityAnim(LoginUI.this, true);
@@ -77,6 +79,8 @@ public class LoginUI extends BaseFragmentActivity implements NetRequestListener 
                 break;
         }
     }
+
+
 
     /**
      * EditText 文本改变监听

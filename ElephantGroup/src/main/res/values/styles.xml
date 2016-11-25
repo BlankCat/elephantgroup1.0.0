@@ -80,6 +80,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/main_text_selector</item>
         <item name="rv_color">@color/colorPrimary</item>
+        <item name="rv_alpha">50</item>
         <item name="rv_type">simpleRipple</item>
     </style>
 
@@ -125,6 +126,7 @@
         <item name="android:background">@color/white</item>
         <item name="rv_color">@color/colorPrimary</item>
         <item name="rv_zoom">true</item>
+        <item name="rv_ripplePadding">10dp</item>
     </style>
 
 </resources>

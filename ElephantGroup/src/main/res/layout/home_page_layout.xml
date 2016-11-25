@@ -27,21 +27,21 @@
             android:background="@color/colorGrayBg"
             android:orientation="horizontal"
             app:rv_color = "@color/colorPrimary"
-            app:rv_type ="rectangle">
+            app:rv_zoom ="true">
 
-            <com.elephantgroup.blog.custom.RippleTextView
+            <TextView
                 android:id="@+id/main_home"
                 style="@style/main_tab_tv_style"
                 android:drawableTop="@drawable/main_home_icon"
                 android:text="@string/main_home" />
 
-            <com.elephantgroup.blog.custom.RippleTextView
+            <TextView
                 android:id="@+id/main_goods"
                 style="@style/main_tab_tv_style"
                 android:drawableTop="@drawable/main_goods_icon"
                 android:text="@string/main_good" />
 
-            <com.elephantgroup.blog.custom.RippleTextView
+            <TextView
                 android:id="@+id/main_myself"
                 style="@style/main_tab_tv_style"
                 android:drawableTop="@drawable/myself_icon"

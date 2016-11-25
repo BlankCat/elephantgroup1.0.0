@@ -34,8 +34,8 @@ public class RippleTextView extends TextView {
     private int WIDTH;
     private int HEIGHT;
     private int frameRate = 10;
-    private int rippleDuration = 400;
-    private int rippleAlpha = 90;
+    private int rippleDuration = 80;
+    private int rippleAlpha = 40;
     private Handler canvasHandler;
     private float radiusMax = 0;
     private boolean animationRunning = false;
