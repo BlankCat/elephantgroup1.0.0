@@ -31,6 +31,8 @@
     <string name="user_back">用户反馈</string>
     <string name="about_us">关于我们</string>
     <string name="exit_app">退出当前账户</string>
+    <string name="cancle">取消</string>
+    <string name="ok">确定</string>
 
 
 </resources>
